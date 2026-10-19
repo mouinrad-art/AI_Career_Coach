@@ -41,3 +41,6 @@ Vercel serverless functions are stateless. This project sends interview history 
 - Scanned image-only PDFs need OCR before upload.
 - For public production deployment, add authentication, rate limits, persistent storage, stricter HTML sanitization, and privacy/retention controls.
 - This is a functional student MVP, not a production-hardened service.
+
+## Vercel import error fix
+Static files mount is conditional; Vercel serves public/ independently. Redeploy and test /api/health. GET /api/interview returns 405 as it requires POST.

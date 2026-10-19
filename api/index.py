@@ -110,4 +110,6 @@ async def extract(file: UploadFile = File(...)):
         raise HTTPException(422, "No selectable text found; scanned PDFs need OCR")
     return {"text": text[:40000]}
 
-app.mount("/", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "..", "public"), html=True), name="public")
+PUBLIC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "public"))
+if os.path.isdir(PUBLIC_DIR):
+    app.mount("/", StaticFiles(directory=PUBLIC_DIR, html=True), name="public")
